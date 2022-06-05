@@ -1,14 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import {
-	createStyles,
-	Container,
-	Group,
-	Burger,
-	Text,
-	useMantineTheme,
-	Collapse,
-	Box,
-} from '@mantine/core';
+import React, { ReactNode, useEffect, useRef } from 'react';
+import { createStyles, Container, Group, Burger, Text, Collapse, Paper } from '@mantine/core';
 import { useBooleanToggle } from '@mantine/hooks';
 import ThemeSwitch from './ThemeSwitch';
 import { useRouter } from 'next/router';
@@ -21,6 +12,11 @@ const useStyles = createStyles((theme) => {
 			borderBottom: `1px solid ${
 				theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
 			}`,
+			position: 'fixed',
+			width: '100%',
+			top: 0,
+			left: 0,
+			zIndex: 999,
 		},
 
 		header: {
@@ -66,10 +62,12 @@ const useStyles = createStyles((theme) => {
 			top: '60px',
 			width: '100%',
 			left: 0,
-			zIndex: 1,
 			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
 			[theme.fn.largerThan('xs')]: {
 				display: 'none',
+				borderBottom: `1px solid ${
+					theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]
+				}`,
 			},
 		},
 
@@ -87,6 +85,12 @@ const useStyles = createStyles((theme) => {
 				backgroundColor:
 					theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
 			},
+
+			[theme.fn.smallerThan('xs')]: {
+				borderRadius: 0,
+				paddingTop: theme.spacing.sm,
+				paddingBottom: theme.spacing.sm,
+			},
 		},
 
 		linkActive: {
@@ -102,7 +106,7 @@ const useStyles = createStyles((theme) => {
 });
 
 interface HeaderSimpleProps {
-	links: { link: string; label: string }[];
+	links: { link: string; label: string; icon: ReactNode }[];
 }
 
 const CLICK_OUT_EVENTS: (keyof DocumentEventMap)[] = ['touchstart', 'mousedown'];
@@ -111,7 +115,6 @@ const Header: React.FC<HeaderSimpleProps> = ({ links }) => {
 	const [opened, toggleOpened] = useBooleanToggle(false);
 	const buttonRef = useRef<HTMLButtonElement>(null);
 	const menuRef = useRef<HTMLDivElement>(null);
-	const theme = useMantineTheme();
 	const router = useRouter();
 	const { classes, cx } = useStyles();
 
@@ -145,52 +148,53 @@ const Header: React.FC<HeaderSimpleProps> = ({ links }) => {
 	));
 
 	return (
-		<Box sx={{ position: 'fixed', width: '100%', top: 0, left: 0, zIndex: 1 }}>
-			<Box component='header' className={classes.root}>
-				<Container className={classes.header}>
+		<Paper component='header' radius={0} shadow='md' className={classes.root}>
+			<Container className={classes.header}>
+				<Link href='/' passHref>
 					<Text
-						component='h1'
+						component='a'
 						variant='gradient'
 						className={classes.title}
 						gradient={{
-							from: theme.colors[theme.primaryColor][8],
-							to: theme.colors[theme.primaryColor][5],
+							from: 'blue',
+							to: 'indigo',
 							deg: 75,
 						}}
 						align='center'
 					>
 						Organization
 					</Text>
-					<nav style={{}} className={classes.links}>
-						{items}
-					</nav>
+				</Link>
 
-					<Burger
-						opened={opened}
-						ref={buttonRef}
-						styles={{
-							root: {
-								display: 'flex',
-								justifyContent: 'center',
-								alignItems: 'center',
-								flexGrow: 1,
-							},
-						}}
-						onClick={() => toggleOpened()}
-						className={classes.burger}
-						size='sm'
-					/>
+				<nav style={{}} className={classes.links}>
+					{items}
+				</nav>
 
-					<Group>
-						<ThemeSwitch />
-					</Group>
+				<Burger
+					opened={opened}
+					ref={buttonRef}
+					styles={{
+						root: {
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							flexGrow: 1,
+						},
+					}}
+					onClick={() => toggleOpened()}
+					className={classes.burger}
+					size='sm'
+				/>
 
-					<div className={classes.mobileMenu} ref={menuRef}>
-						<Collapse in={opened}>{items}</Collapse>
-					</div>
-				</Container>
-			</Box>
-		</Box>
+				<Group>
+					<ThemeSwitch />
+				</Group>
+
+				<div className={classes.mobileMenu} ref={menuRef}>
+					<Collapse in={opened}>{items}</Collapse>
+				</div>
+			</Container>
+		</Paper>
 	);
 };
 

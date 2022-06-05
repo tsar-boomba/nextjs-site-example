@@ -58,7 +58,7 @@ const useStyles = createStyles((theme) => ({
 		opacity: 0.75,
 		maxWidth: 500,
 
-		[theme.fn.smallerThan('md')]: {
+		[theme.fn.smallerThan('sm')]: {
 			maxWidth: '100%',
 		},
 	},
@@ -69,7 +69,7 @@ const useStyles = createStyles((theme) => ({
 		fontFamily: `Greycliff CF, ${theme.fontFamily}`,
 		fontSize: 22,
 
-		[theme.fn.smallerThan('md')]: {
+		[theme.fn.smallerThan('sm')]: {
 			width: '100%',
 		},
 	},
