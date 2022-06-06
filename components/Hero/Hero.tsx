@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, Container, Title, Text, Button } from '@mantine/core';
+import { createStyles, Container, Title, Text } from '@mantine/core';
 
 const BG_COLOR = '#0c330e';
 
@@ -100,16 +100,6 @@ const Hero = () => {
 								here. We serve over 2,000 organized people - making us the most
 								organized BYT in the US.
 							</Text>
-
-							<Button
-								variant='gradient'
-								gradient={{ from: 'blue', to: 'indigo' }}
-								size='xl'
-								className={classes.control}
-								mt={40}
-							>
-								Get started
-							</Button>
 						</div>
 					</div>
 				</Container>
