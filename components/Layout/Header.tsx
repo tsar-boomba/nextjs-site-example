@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createStyles, Container, Group, Burger, Text, Collapse, Paper } from '@mantine/core';
 import { useBooleanToggle } from '@mantine/hooks';
 import ThemeSwitch from './ThemeSwitch';
@@ -106,7 +106,7 @@ const useStyles = createStyles((theme) => {
 });
 
 interface HeaderSimpleProps {
-	links: { link: string; label: string; icon: ReactNode }[];
+	links: { link: string; label: string }[];
 }
 
 const CLICK_OUT_EVENTS: (keyof DocumentEventMap)[] = ['touchstart', 'mousedown'];

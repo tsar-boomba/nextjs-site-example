@@ -1,8 +1,9 @@
-import { PropsWithChildren, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
+import Footer from './Footer';
 import Header from './Header';
 import { useLayoutStyles } from './LayoutStyles';
 
-const links: { label: string; link: string; icon: ReactNode }[] = [{ label: 'Home', link: '/' }];
+const links: { label: string; link: string }[] = [{ label: 'Home', link: '/' }];
 
 const Layout: React.FC<PropsWithChildren<unknown>> = ({ children }) => {
 	const { classes } = useLayoutStyles();
@@ -11,6 +12,7 @@ const Layout: React.FC<PropsWithChildren<unknown>> = ({ children }) => {
 		<div className={classes.page}>
 			<Header links={links} />
 			<main className={classes.main}>{children}</main>
+			<Footer />
 		</div>
 	);
 };
