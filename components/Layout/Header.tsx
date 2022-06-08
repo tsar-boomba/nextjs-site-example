@@ -44,6 +44,7 @@ const useStyles = createStyles((theme) => {
 			display: 'flex',
 			flexGrow: 1,
 			justifyContent: 'center',
+			gap: theme.spacing.md,
 			[theme.fn.smallerThan('xs')]: {
 				display: 'none',
 			},

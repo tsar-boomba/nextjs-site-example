@@ -30,13 +30,28 @@ const Footer = () => {
 		<footer className={classes.root}>
 			<Text sx={{ fontWeight: 500 }}>© {new Date().getFullYear()}</Text>
 			<Group>
-				<a style={{ color: 'inherit' }} href='https://twitter.com'>
+				<a
+					target='_blank'
+					rel='noopener noreferrer'
+					style={{ color: 'inherit' }}
+					href='https://twitter.com'
+				>
 					<SocialButton icon={SiTwitter} hover='#00acee' />
 				</a>
-				<a style={{ color: 'inherit' }} href='https://twitter.com'>
+				<a
+					target='_blank'
+					rel='noopener noreferrer'
+					style={{ color: 'inherit' }}
+					href='https://twitter.com'
+				>
 					<SocialButton icon={SiFacebook} hover='#3b5998' />
 				</a>
-				<a style={{ color: 'inherit' }} href='https://twitter.com'>
+				<a
+					target='_blank'
+					rel='noopener noreferrer'
+					style={{ color: 'inherit' }}
+					href='https://twitter.com'
+				>
 					<SocialButton icon={SiInstagram} hover='#3f729b' />
 				</a>
 			</Group>

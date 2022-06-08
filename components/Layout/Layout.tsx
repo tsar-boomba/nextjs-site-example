@@ -3,7 +3,10 @@ import Footer from './Footer';
 import Header from './Header';
 import { useLayoutStyles } from './LayoutStyles';
 
-const links: { label: string; link: string }[] = [{ label: 'Home', link: '/' }];
+const links: { label: string; link: string }[] = [
+	{ label: 'Home', link: '/' },
+	{ label: 'Academics', link: '/academics' },
+];
 
 const Layout: React.FC<PropsWithChildren<unknown>> = ({ children }) => {
 	const { classes } = useLayoutStyles();
